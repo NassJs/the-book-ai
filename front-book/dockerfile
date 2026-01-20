@@ -1,0 +1,16 @@
+ARG NODE_VERSION=22
+
+FROM node:${NODE_VERSION}-alpine AS base
+
+ENV NODE_ENV=development
+WORKDIR /app
+
+
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
+
+COPY package.json pnpm-lock.yaml* ./
+RUN pnpm install
+
+
+CMD ["pnpm", "dev"]
