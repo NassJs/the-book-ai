@@ -22,19 +22,20 @@ services:
     build:
       context: ./front-book
       dockerfile: Dockerfile
-      args:
-        API_URL: http://localhost:8080
     container_name: api-book-frontend
-    restart: unless-stopped
     ports:
       - "3000:3000"
+    volumes:
+      - ./front-book:/app
     environment:
-      NUXT_PUBLIC_API_URL: http://localhost:8080
-      NODE_ENV: production
+      NODE_ENV: development
+      NUXT_PUBLIC_API_URL: http://api:8080
+    command: pnpm dev
     depends_on:
       - api
     networks:
       - app-network
+
 
 networks:
   app-network:
