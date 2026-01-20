@@ -1,0 +1,21 @@
+# syntax=docker/dockerfile:1
+ARG NODE_VERSION=20
+FROM node:${NODE_VERSION}-alpine AS base
+
+# Build stage
+FROM base AS build
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci
+COPY . .
+RUN npm run build
+
+# Run stage
+FROM base AS runner
+WORKDIR /app
+ENV NODE_ENV=production
+ENV PORT=3000
+ENV HOST=0.0.0.0
+COPY --from=build /app/.output ./.output
+EXPOSE 3000
+CMD ["node", ".output/server/index.mjs"]
