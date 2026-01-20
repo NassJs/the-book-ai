@@ -15,7 +15,7 @@ RUN mvn dependency:go-offline -B
 COPY src ./src
 
 # Build l'application (skip tests pour build plus rapide)
-RUN mvn clean package -DskipTests
+RUN mvn clean package -DskipTests -q
 
 # Stage 2: Runtime avec JRE uniquement
 FROM eclipse-temurin:21-jre-alpine
@@ -33,7 +33,7 @@ COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
 
 # Variables d'environnement par défaut
-ENV JAVA_OPTS="-Xms256m -Xmx512m"
+ENV JAVA_OPTS="-Xms256m -Xmx512m -XX:+UseG1GC"
 
 # Point d'entrée
 ENTRYPOINT ["sh", "-c", "java $JAVA_OPTS -jar app.jar"]
