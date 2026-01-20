@@ -27,6 +27,7 @@ services:
       - "3000:3000"
     volumes:
       - ./front-book:/app
+      - /app/node_modules   # 🔑 volume anonyme
     environment:
       NODE_ENV: development
       NUXT_PUBLIC_API_URL: http://api:8080
@@ -35,7 +36,6 @@ services:
       - api
     networks:
       - app-network
-
 
 networks:
   app-network:
