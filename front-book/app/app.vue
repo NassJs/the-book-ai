@@ -3,6 +3,8 @@
     <!-- <NuxtRouteAnnouncer />
     <NuxtWelcome />
     test -->
-    <div> TEST feeg</div>
+    <div> 
+      <input placeholder="Met quelque ligne pour crée ton histoire" />
+    </div>
   </div>
 </template>

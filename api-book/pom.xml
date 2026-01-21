@@ -39,6 +39,20 @@
 			<artifactId>spring-boot-starter-webclient</artifactId>
 		</dependency>
 
+		<!-- LangChain4j Spring Boot Starter -->
+		<dependency>
+			<groupId>dev.langchain4j</groupId>
+			<artifactId>langchain4j-spring-boot-starter</artifactId>
+			<version>0.36.2 </version>
+		</dependency>
+
+		<!-- LangChain4j Ollama -->
+		<dependency>
+			<groupId>dev.langchain4j</groupId>
+			<artifactId>langchain4j-ollama</artifactId>
+			<version>0.36.2 </version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
