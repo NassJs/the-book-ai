@@ -61,7 +61,7 @@ services:
 
   cloudflared:
     image: cloudflare/cloudflared:latest
-    container_name: pandemic-cloudflared
+    container_name: cloudflared
     restart: unless-stopped
     command: tunnel --no-autoupdate --url http://caddy:80
     profiles: ["tunnel"]
