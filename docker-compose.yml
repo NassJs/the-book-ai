@@ -59,6 +59,17 @@ services:
     networks:
       - app-network
 
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: pandemic-cloudflared
+    restart: unless-stopped
+    command: tunnel --no-autoupdate --url http://caddy:80
+    profiles: ["tunnel"]
+    depends_on:
+      - caddy
+    networks:
+      - app-net    
+
 volumes:
   ollama_data:
   caddy_data:
