@@ -22,7 +22,7 @@ services:
     build:
       context: ./front-book
       dockerfile: Dockerfile
-    container_name: api-book-frontend
+    container_name: book-frontend
     ports:
       - "3000:3000"
     volumes:
@@ -41,9 +41,10 @@ services:
     container_name: ollama
     ports:
       - "11434:11434"
-    volumes:
-      - ollama_data:/root/.ollama
+    # volumes:
+    #   - ollama_data:/root/.ollama
 
+  # Caddy Reverse Proxy
   caddy:
     image: caddy:2-alpine
     container_name: caddy-proxy
@@ -63,15 +64,15 @@ services:
     image: cloudflare/cloudflared:latest
     container_name: cloudflared
     restart: unless-stopped
-    command: tunnel --no-autoupdate --url http://caddy:80
+    command: tunnel --no-autoupdate run --token ${CLOUDFLARE_TOKEN}
     profiles: ["tunnel"]
     depends_on:
       - caddy
     networks:
-      - app-net    
+      - app-network
 
 volumes:
-  ollama_data:
+  # ollama_data:
   caddy_data:
   caddy_config:
 

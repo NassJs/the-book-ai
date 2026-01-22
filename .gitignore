@@ -1,0 +1,8 @@
+.env
+.env.local
+.env.*.local
+
+
+# Cloudflare Tunnel Credentials
+cloudflared/credentials.json
+EOF
