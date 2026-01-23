@@ -36,13 +36,15 @@ services:
       - api
     networks:
       - app-network
-  ollama:
-    image: ollama/ollama:latest
-    container_name: ollama
+      
+  # Adminer for Database Management
+  adminer:
+    image: adminer
+    container_name: Adminer
+    environment:
+      ADMINER_DESIGN: dracula
     ports:
-      - "11434:11434"
-    # volumes:
-    #   - ollama_data:/root/.ollama
+      - 8080:8080
 
   # Caddy Reverse Proxy
   caddy:
