@@ -1,10 +1,12 @@
+# DEFLANDRE NASSIM 
+
 # The Book AI
 
 Une plateforme web moderne pour générer des histoires personnalisées pour enfants alimentée par l'intelligence artificielle. 
 
 ## 📋 Table of Contents
 
-- [À propos](#à-propos)
+- [Presentation du projet](#Présentation-du-projet)
 - [Stack Technique](#stack-technique)
 - [Architecture](#architecture)
 - [Prérequis](#prérequis)
@@ -124,8 +126,8 @@ cd api-book
 spring:
   datasource:
     url: jdbc:postgresql://db:5432/book_ai
-    username: user
-    password: password
+    username: votre-user
+    password: votre-password
   jpa:
     hibernate:
       ddl-auto: update
@@ -135,11 +137,23 @@ ollama:
   model: mistral  # ou autre modèle compatible
 
 
+# Docker Desktop Container
+
+![Logo du projet](images/docker-container.png)
+ 
 ## Commandes Docker Utiles
 
 ```bash
 # Démarrer les services
 docker compose up -d
+
+# Ce projet utilise un Quick Tunnel gratuit (trycloudflare) : l’URL est temporaire et change à chaque redémarrage.
+
+# Démarrer cloudflared :
+docker compose --profile tunnel up -d cloudflared
+
+# Récupérer l’URL publique :
+docker logs pandemic-cloudflared --tail 40
 
 # Arrêter les services
 docker compose down
@@ -157,10 +171,12 @@ docker compose logs -f <service-name>
 - intellinJ Api
 
 
+# Difficulté rencontrés : 
 
-# Docker Desktop Container
+- La mise en place de cloudFlare avec Caddyfile. J'ai du faire quelque recherche car je n'ai jamais mis en place un tunnel. 
 
-![Logo du projet](images/docker-container.png)
+
+
 
 
 
