@@ -37,7 +37,7 @@ Une plateforme web moderne pour générer des histoires personnalisées pour enf
 - **TypeScript** - Typage statique JavaScript
 
 ### IA & LLM
-- **Ollama** - Moteur LLM local pour la génération d'histoires
+- **Ollama** - Moteur LLM local pour la génération d'histoires. 
 
 ### DevOps
 - **Docker & Docker Compose** - Containerisation et orchestration
@@ -132,6 +132,13 @@ spring:
     hibernate:
       ddl-auto: update
 
+### La variable MISTRAL_API_KEY a ajouter dans votre projet JAVA si votre pc ne peux pas faire tourner OLLAMA (demande un peu de ram). 
+###Allez sur mistral puis crée une clé api cela est gratuit pour des tests ou projet personnel.
+langchain4j:
+  mistral-ai:
+    chat-model:
+      api-key: ${MISTRAL_API_KEY}
+
 ollama:
   api-url: http://ollama:11434
   model: mistral  # ou autre modèle compatible
@@ -161,6 +168,7 @@ docker compose down
 # Voir les logs
 docker compose logs -f <service-name>
 
+# Ajouter un fichier 
 
 ```
 
@@ -173,7 +181,7 @@ docker compose logs -f <service-name>
 
 # Difficulté rencontrés : 
 
-- La mise en place de cloudFlare avec Caddyfile. J'ai du faire quelque recherche car je n'ai jamais mis en place un tunnel. 
+- La mise en place de cloudFlare avec Caddyfile. J'ai du faire quelque recherche car je n'ai jamais mis en place un tunnel.  
 
 
 
